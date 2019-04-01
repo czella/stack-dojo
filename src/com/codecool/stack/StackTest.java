@@ -23,7 +23,7 @@ class StackTest {
 
         Stack stack = new Stack(1);
         stack.push(10);
-        assertThrows(StackIsFull.class, () -> stack.push(11));
+        assertThrows(StackUnderflow.class, () -> stack.push(11));
 
     }
 
@@ -44,7 +44,7 @@ class StackTest {
     public void popThrowsExceptionIfStackIsEmpty() {
 
         Stack stack = new Stack(2);
-        assertThrows(StackIsEmpty.class, () -> stack.pop());
+        assertThrows(StackOverflow.class, () -> stack.pop());
 
     }
 
@@ -65,7 +65,7 @@ class StackTest {
     public void peekThrowsExceptionIfStackIsEmpty() {
 
         Stack stack = new Stack(2);
-        assertThrows(StackIsEmpty.class, () -> stack.peek());
+        assertThrows(StackOverflow.class, () -> stack.peek());
 
     }
 

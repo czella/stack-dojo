@@ -2,12 +2,10 @@ package com.codecool.stack;
 
 public class Stack {
 
-    private int maxSize;
     public Integer[] innerArray;
     private int lastEmptyIndex = 0;
 
     public Stack(int maxSize) {
-        this.maxSize = maxSize;
         innerArray = new Integer[maxSize];
     }
 
@@ -17,7 +15,7 @@ public class Stack {
             innerArray[lastEmptyIndex] = i;
             lastEmptyIndex++;
         } else {
-            throw new StackIsFull();
+            throw new StackUnderflow();
         }
 
     }
@@ -32,7 +30,7 @@ public class Stack {
         if (lastEmptyIndex > 0) {
             lastEmptyIndex--;
             return innerArray[lastEmptyIndex];
-        } else { throw new StackIsEmpty(); }
+        } else { throw new StackOverflow(); }
 
     }
 
@@ -40,7 +38,7 @@ public class Stack {
 
         if (lastEmptyIndex > 0) {
             return innerArray[lastEmptyIndex - 1];
-        } else { throw new StackIsEmpty(); }
+        } else { throw new StackOverflow(); }
 
     }
 }
