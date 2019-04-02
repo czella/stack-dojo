@@ -10,7 +10,7 @@ class StackTest {
     @Test
     public void pushElementIncreasesSize() {
 
-        Stack stack = new Stack(5);
+        Stack stack = new Stack<Integer>(5);
         int originalSize = stack.getSize();
         stack.push(10);
         int newSize = stack.getSize();
@@ -21,7 +21,7 @@ class StackTest {
     @Test
     public void pushThrowsExceptionWhenFull() {
 
-        Stack stack = new Stack(1);
+        Stack stack = new Stack<Integer>(1);
         stack.push(10);
         assertThrows(StackUnderflow.class, () -> stack.push(11));
 
@@ -30,12 +30,11 @@ class StackTest {
     @Test
     public void popReturnsAndRemovesLastElement() {
 
-        Stack stack = new Stack(2);
-        int itemToPop = 5;
+        Stack stack = new Stack<Integer>(2);
+        Integer itemToPop = 5;
         stack.push(5);
         int originalSize = stack.getSize();
-        int itemPopped = stack.pop();
-        assertEquals(itemToPop, itemPopped);
+        assertEquals(itemToPop, stack.pop());
         assertEquals(originalSize - 1, stack.getSize());
 
     }
@@ -43,7 +42,7 @@ class StackTest {
     @Test
     public void popThrowsExceptionIfStackIsEmpty() {
 
-        Stack stack = new Stack(2);
+        Stack stack = new Stack<Integer>(2);
         assertThrows(StackOverflow.class, () -> stack.pop());
 
     }
@@ -51,12 +50,11 @@ class StackTest {
     @Test
     public void peekReturnsLastElement() {
 
-        Stack stack = new Stack(2);
-        int itemToPeek = 6;
+        Stack stack = new Stack<Integer>(2);
+        Integer itemToPeek = 6;
         stack.push(6);
         int originalSize = stack.getSize();
-        int itemPeeked = stack.peek();
-        assertEquals(itemToPeek, itemPeeked);
+        assertEquals(itemToPeek, stack.peek());
         assertEquals(originalSize, stack.getSize());
 
     }
@@ -64,8 +62,20 @@ class StackTest {
     @Test
     public void peekThrowsExceptionIfStackIsEmpty() {
 
-        Stack stack = new Stack(2);
+        Stack stack = new Stack<Integer>(2);
         assertThrows(StackOverflow.class, () -> stack.peek());
+
+    }
+
+    @Test
+    public void stackWorksForString() {
+
+        Stack stack = new Stack<String>(5);
+        int originalSize = stack.getSize();
+        stack.push("hello");
+        int newSize = stack.getSize();
+        assertEquals(originalSize + 1, newSize);
+        assertEquals("hello", stack.pop());
 
     }
 

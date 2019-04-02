@@ -1,18 +1,20 @@
 package com.codecool.stack;
 
-public class Stack {
+import java.lang.reflect.Array;
 
-    public Integer[] innerArray;
+public class Stack<T> {
+
+    public T[] innerArray;
     private int lastEmptyIndex = 0;
 
     public Stack(int maxSize) {
-        innerArray = new Integer[maxSize];
+        innerArray = (T[])new Object[maxSize];
     }
 
-    public void push(int i) {
+    public void push(T object) {
 
         if (lastEmptyIndex < innerArray.length) {
-            innerArray[lastEmptyIndex] = i;
+            innerArray[lastEmptyIndex] = object;
             lastEmptyIndex++;
         } else {
             throw new StackUnderflow();
@@ -25,7 +27,7 @@ public class Stack {
 
     }
 
-    public int pop() {
+    public T pop() {
 
         if (lastEmptyIndex > 0) {
             lastEmptyIndex--;
@@ -34,7 +36,7 @@ public class Stack {
 
     }
 
-    public int peek() {
+    public T peek() {
 
         if (lastEmptyIndex > 0) {
             return innerArray[lastEmptyIndex - 1];
